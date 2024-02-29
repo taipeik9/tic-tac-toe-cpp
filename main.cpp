@@ -9,7 +9,7 @@ using namespace tictactoe;
 int main()
 {
   Game game;
+  game.start();
 
-  game.display();
   return 0;
 }
