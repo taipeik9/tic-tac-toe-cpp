@@ -1,4 +1,7 @@
+#include <limits>
+
 #include "game.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -22,37 +25,36 @@ namespace tictactoe
 
   void Game::setPlayers()
   {
-    // for (int i = 0; i < NUM_PLAYERS; ++i)
-    // {
-    //   setPlayer(m_players[i], i + 1);
-    // }
+    for (int i = 0; i < NUM_PLAYERS; ++i)
+    {
+      setPlayer(m_players[i], i + 1);
+    }
 
-    // testing
-    m_players[0].set("Henry", 'X', 1);
-    m_players[1].set("Eden", 'O', 2);
+    // for testing
+    // m_players[0].set("Henry", 'X', 1);
+    // m_players[1].set("Eden", 'O', 2);
   }
 
   void Game::setPlayer(Player &player, int playNum)
   {
+    bool isValid = false;
     char name[MAX_NAME];
     char symbol;
-    bool isValid = true;
 
     do
     {
-      isValid = true;
-      cout << "Enter Player " << playNum << "'s name: ";
-      cin >> name;
-
-      cout << "Enter Player " << playNum << "'s symbol: ";
-      cin >> symbol;
-
-      if (symbol == '\0' || name[0] == '\0')
-      {
-        cout << "Invalid input." << endl;
-        isValid = false;
-      }
+      cout << "Enter Player " << playNum << "'s name (max 50 characters): ";
+      isValid = validateStringInput(name, MAX_NAME);
     } while (!isValid);
+
+    do
+    {
+      cout << "Enter Player " << playNum << "'s symbol: ";
+      isValid = validateCharInput(symbol);
+    } while (!isValid);
+
+    while ((getchar()) != '\n')
+      ;
 
     player.set(name, symbol, playNum);
   }
@@ -61,20 +63,73 @@ namespace tictactoe
   {
     int row;
     int col;
+    bool isValid;
+    bool flag = true;
 
     player.display();
-    cout << "Enter column number: ";
-    cin >> col;
 
-    cout << "Enter row number: ";
-    cin >> row;
+    do
+    {
+      isValid = true;
 
-    setMove(col, row, player);
+      do
+      {
+        cout << "Enter column number: ";
+        flag = inputIntRange(1, 3, col);
+      } while (!flag);
+
+      do
+      {
+        cout << "Enter row number: ";
+        flag = inputIntRange(1, 3, row);
+      } while (!flag);
+
+      isValid = setMove(col, row, player);
+
+      if (!isValid)
+        cout << "Spot has already been taken, try again." << endl;
+    } while (!isValid);
   }
 
-  void Game::setMove(int column, int row, Player &player)
+  bool Game::setMove(int column, int row, Player &player)
   {
-    m_board[(column + ((row - 1) * 3)) - 1] = player.getSymbol();
+    int index = (column + ((row - 1) * 3)) - 1;
+    bool flag = true;
+
+    if (m_board[index] == ' ')
+      m_board[index] = player.getSymbol();
+    else
+      flag = false;
+
+    return flag;
+  }
+
+  bool Game::checkWin()
+  {
+    bool flag = false;
+
+    int const winCons[8][3] = {
+        {0, 1, 2}, // horizontal win conditions
+        {3, 4, 5},
+        {6, 7, 8},
+        {0, 3, 6}, // veritical win conditions
+        {1, 4, 7},
+        {2, 5, 8},
+        {2, 4, 6}, // diagonal win conditions
+        {0, 4, 8}};
+
+    for (int i = 0; i < 8; ++i)
+    {
+      if (m_board[winCons[i][0]] == m_board[winCons[i][1]] &&
+          m_board[winCons[i][1]] == m_board[winCons[i][2]] &&
+          m_board[winCons[i][0]] != ' ' && m_board[winCons[i][1]] != ' ' &&
+          m_board[winCons[i][2]] != ' ')
+      {
+        flag = true;
+      }
+    }
+
+    return flag;
   }
 
   ostream &Game::display(ostream &os) const
@@ -121,14 +176,20 @@ namespace tictactoe
     setPlayers();
     display();
 
-    while (!m_over)
+    do
     {
       selectMove(m_players[i % 2 != 0]);
       ++i;
       if (i == 8)
         m_over = false;
 
+      if (checkWin())
+      {
+        cout << "You Win!" << endl;
+        m_over = true;
+      }
       display();
-    }
+
+    } while (!m_over);
   }
 }

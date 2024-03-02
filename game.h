@@ -24,9 +24,10 @@ namespace tictactoe
     void setPlayer(Player &player, int playNum);
     void setPlayers();
 
-    void setMove(int column, int row, Player &player);
-    void selectMove(Player &player);
+    bool setMove(int column, int row, Player &player);
+    bool checkWin();
 
+    void selectMove(Player &player);
     void start();
   };
 }
