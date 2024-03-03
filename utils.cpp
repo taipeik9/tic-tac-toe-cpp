@@ -31,12 +31,12 @@ namespace tictactoe
     return isValid;
   }
 
-  bool validateStringInput(char *input, int maxSize)
+  bool validateStringInput(char *input, int maxSize, char const *message)
   {
     cin.getline(input, maxSize);
     if (strlen(input) == 0 || strlen(input) >= maxSize)
     {
-      cout << "Invalid input! Please enter a non-empty string with a maximum length of " << maxSize - 1 << " characters." << endl;
+      cout << message << endl;
       return false;
     }
     return true;
@@ -44,14 +44,16 @@ namespace tictactoe
 
   bool validateCharInput(char &input)
   {
-    cin >> input;
-    if (cin.fail() || cin.peek() != '\n')
+    char temp[50];
+    if (!validateStringInput(temp, 50, "Must be a single, non-empty character. Please try again."))
+      return false;
+
+    if (temp[1] != '\0')
     {
-      cin.clear();
-      cin.ignore(100, '\n');
-      cout << "Invalid input! Please enter a single non-empty character." << endl;
+      cout << "Input should be a single character. Please try again." << endl;
       return false;
     }
+    input = temp[0];
     return true;
   }
 }

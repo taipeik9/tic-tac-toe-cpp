@@ -9,8 +9,10 @@ namespace tictactoe
 {
   Game::Game()
   {
-    m_moveCount = 0;
     m_over = false;
+    m_gameSize = 0;
+    m_boards = nullptr;
+    m_winIds = nullptr;
 
     for (int i = 0; i < 9; ++i)
       m_board[i] = ' ';
@@ -21,18 +23,23 @@ namespace tictactoe
 
   Game::~Game()
   {
+    delete[] m_boards;
+    m_boards = nullptr;
+
+    delete[] m_winIds;
+    m_winIds = nullptr;
   }
 
   void Game::setPlayers()
   {
-    for (int i = 0; i < NUM_PLAYERS; ++i)
-    {
-      setPlayer(m_players[i], i + 1);
-    }
+    // for (int i = 0; i < NUM_PLAYERS; ++i)
+    // {
+    //   setPlayer(m_players[i], i + 1);
+    // }
 
     // for testing
-    // m_players[0].set("Henry", 'X', 1);
-    // m_players[1].set("Eden", 'O', 2);
+    m_players[0].set("Henry", 'X');
+    m_players[1].set("Eden", 'O');
   }
 
   void Game::setPlayer(Player &player, int playNum)
@@ -44,7 +51,7 @@ namespace tictactoe
     do
     {
       cout << "Enter Player " << playNum << "'s name (max 50 characters): ";
-      isValid = validateStringInput(name, MAX_NAME);
+      isValid = validateStringInput(name, MAX_NAME, "Invalid input. Please input a string with a maximum length of 50 characters.");
     } while (!isValid);
 
     do
@@ -53,10 +60,7 @@ namespace tictactoe
       isValid = validateCharInput(symbol);
     } while (!isValid);
 
-    while ((getchar()) != '\n')
-      ;
-
-    player.set(name, symbol, playNum);
+    player.set(name, symbol);
   }
 
   void Game::selectMove(Player &player)
@@ -132,6 +136,39 @@ namespace tictactoe
     return flag;
   }
 
+  bool Game::checkDraw()
+  {
+    bool flag = true;
+
+    for (int i = 0; i < 9; ++i)
+    {
+      if (m_board[i] == ' ')
+      {
+        flag = false;
+      }
+    }
+
+    return flag;
+  }
+
+  void Game::setGame()
+  {
+    int gameSize;
+    cout << "Please enter the amount of games you would like to play: ";
+    inputIntRange(1, MAX_GAMES, gameSize);
+
+    m_boards = new char[9 * gameSize];
+    m_winIds = new int[gameSize];
+
+    m_gameSize = gameSize;
+  }
+
+  void Game::resetBoard()
+  {
+    for (int i = 0; i < 9; ++i)
+      m_board[i] = ' ';
+  }
+
   ostream &Game::display(ostream &os) const
   {
     int row = 1;
@@ -172,24 +209,93 @@ namespace tictactoe
 
   void Game::start()
   {
-    int i = 0;
+    int turnIndex = 0;
+
+    setGame();
+
     setPlayers();
-    display();
 
-    do
+    for (int i = 0; i < m_gameSize; ++i)
     {
-      selectMove(m_players[i % 2 != 0]);
-      ++i;
-      if (i == 8)
-        m_over = false;
+      m_over = false;
 
-      if (checkWin())
+      do
       {
-        cout << "You Win!" << endl;
-        m_over = true;
-      }
-      display();
+        display();
+        selectMove(m_players[turnIndex]);
 
-    } while (!m_over);
+        if (checkWin())
+        {
+          cout << m_players[turnIndex].getName() << " Wins Game #" << i + 1 << endl;
+          ++m_players[turnIndex];
+
+          m_winIds[i] = turnIndex;
+          m_over = true;
+        }
+        else if (checkDraw())
+        {
+          cout << "Draw for Game #" << i + 1 << endl;
+          m_winIds[i] = -1;
+          m_over = true;
+        }
+
+        turnIndex = turnIndex == 0 ? 1 : 0;
+
+      } while (!m_over);
+
+      for (int j = 0; j < 9; ++j)
+      {
+        m_boards[(i * 9) + j] = m_board[j];
+      }
+      resetBoard();
+    }
+
+    displayEndGame();
+    cout << "Thanks for playing!" << endl;
+  }
+
+  ostream &Game::displayEndGame(ostream &os) const
+  {
+    os << "All Games Complete! Summary Below" << endl;
+
+    for (int i = 0; i < m_gameSize; ++i)
+    {
+      if (m_winIds[i] == 0 || m_winIds[i] == 1)
+        os << m_players[m_winIds[i]].getName() << " won Game #" << i + 1 << endl;
+      else
+        os << "Game #" << i + 1 << " was a Draw!" << endl;
+
+      os << "+-----------+" << endl;
+      os << "| ";
+
+      for (int j = 0; j < 9; ++j)
+      {
+
+        os << m_boards[(i * 9) + j];
+        if ((j + 1) % 3 == 0)
+        {
+          os << " |" << endl;
+          if (j != 8)
+          {
+            os << "|---+---+---|" << endl;
+            os << "| ";
+          }
+        }
+        else
+        {
+          os << " | ";
+        }
+      }
+      os << "+-----------+" << endl;
+      os << "\n";
+    }
+
+    os << "Total score was:" << endl;
+    os << m_players[0].getName() << ": " << m_players[0].getWins() << endl
+       << " wins";
+    os << m_players[1].getName() << ": " << m_players[1].getWins() << endl
+       << " wins";
+
+    return os;
   }
 }
