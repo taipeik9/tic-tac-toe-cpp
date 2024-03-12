@@ -16,7 +16,6 @@ namespace tictactoe
 
     for (int i = 0; i < 9; ++i)
       m_board[i] = ' ';
-
     for (int i = 0; i < NUM_PLAYERS; ++i)
       m_players[i] = Player();
   }
@@ -32,14 +31,10 @@ namespace tictactoe
 
   void Game::setPlayers()
   {
-    // for (int i = 0; i < NUM_PLAYERS; ++i)
-    // {
-    //   setPlayer(m_players[i], i + 1);
-    // }
-
-    // for testing
-    m_players[0].set("Henry", 'X');
-    m_players[1].set("Eden", 'O');
+    for (int i = 0; i < NUM_PLAYERS; ++i)
+    {
+      setPlayer(m_players[i], i + 1);
+    }
   }
 
   void Game::setPlayer(Player &player, int playNum)
@@ -154,8 +149,16 @@ namespace tictactoe
   void Game::setGame()
   {
     int gameSize;
-    cout << "Please enter the amount of games you would like to play: ";
-    inputIntRange(1, MAX_GAMES, gameSize);
+    bool flag = true;
+
+    do
+    {
+      cout << "Please enter the amount of games you would like to play: ";
+      flag = inputIntRange(1, MAX_GAMES, gameSize);
+    } while (!flag);
+
+    while ((getchar()) != '\n')
+      ;
 
     m_boards = new char[9 * gameSize];
     m_winIds = new int[gameSize];
@@ -291,10 +294,10 @@ namespace tictactoe
     }
 
     os << "Total score was:" << endl;
-    os << m_players[0].getName() << ": " << m_players[0].getWins() << endl
-       << " wins";
-    os << m_players[1].getName() << ": " << m_players[1].getWins() << endl
-       << " wins";
+    os << m_players[0].getName() << ": " << m_players[0].getWins()
+       << " wins" << endl;
+    os << m_players[1].getName() << ": " << m_players[1].getWins()
+       << " wins" << endl;
 
     return os;
   }

@@ -1,0 +1,371 @@
+leaks(20110) MallocStackLogging: could not tag MSL-related memory as no_footprint, so those pages will be included in process footprint - (null)
+leaks(20110) MallocStackLogging: stack logs being written to /private/tmp/stack-logs.20110.10450c000.leaks.mJbH
+leaks(20110) MallocStackLogging: recording malloc and VM allocation stacks to disk using standard recorder
+tictactoe.out(20111) MallocStackLogging: could not tag MSL-related memory as no_footprint, so those pages will be included in process footprint - (null)
+tictactoe.out(20111) MallocStackLogging: stack logs being written to /private/tmp/stack-logs.20111.100614000.tictactoe.out.4n7ndr.index
+tictactoe.out(20111) MallocStackLogging: recording malloc and VM allocation stacks to disk using standard recorder
+Please enter the amount of games you would like to play: 3
+Enter Player 1's name (max 50 characters): 
+Invalid input. Please input a string with a maximum length of 50 characters.
+Enter Player 1's name (max 50 characters): Henry
+Enter Player 1's symbol: asdf
+Input should be a single character. Please try again.
+Enter Player 1's symbol: jvioasdoi
+Input should be a single character. Please try again.
+Enter Player 1's symbol: X
+Enter Player 2's name (max 50 characters): Jane
+Enter Player 2's symbol: 
+Must be a single, non-empty character. Please try again.
+Enter Player 2's symbol: 0
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   |   |
+   |---+---+---|
+ 2 |   |   |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   |   |
+   |---+---+---|
+ 2 | X |   |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 2
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   |   |
+   |---+---+---|
+ 2 | X | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X |   |   |
+   |---+---+---|
+ 2 | X | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 2
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X | 0 |   |
+   |---+---+---|
+ 2 | X | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 3
+Henry Wins Game #1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   |   |
+   |---+---+---|
+ 2 |   |   |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 2
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   |   |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X |   |   |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 3
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X |   | 0 |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 1
+Spot has already been taken, try again.
+Enter column number: 1
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X |   | 0 |
+   |---+---+---|
+ 2 | X | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 1
+Enter row number: 3
+Jane Wins Game #2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   |   |
+   |---+---+---|
+ 2 |   |   |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 3
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   | X |
+   |---+---+---|
+ 2 |   |   |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 2
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 |   |   | X |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X |   | X |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Jane: 0
+Enter column number: 2
+Enter row number: 1
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X | 0 | X |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   |   |   |
+   +-----------+
+Henry: X
+Enter column number: 2
+Enter row number: 3
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X | 0 | X |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 |   | X |   |
+   +-----------+
+Jane: 0
+Enter column number: 1
+Enter row number: 3
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X | 0 | X |
+   |---+---+---|
+ 2 |   | 0 |   |
+   |---+---+---|
+ 3 | 0 | X |   |
+   +-----------+
+Henry: X
+Enter column number: 1
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X | 0 | X |
+   |---+---+---|
+ 2 | X | 0 |   |
+   |---+---+---|
+ 3 | 0 | X |   |
+   +-----------+
+Jane: 0
+Enter column number: 3
+Enter row number: 2
+Game Board
+Henry: X
+Jane: 0
+
+     1   2   3
+   +-----------+
+ 1 | X | 0 | X |
+   |---+---+---|
+ 2 | X | 0 | 0 |
+   |---+---+---|
+ 3 | 0 | X |   |
+   +-----------+
+Henry: X
+Enter column number: 3
+Enter row number: 3
+Draw for Game #3
+All Games Complete! Summary Below
+Henry won Game #1
++-----------+
+| X | 0 |   |
+|---+---+---|
+| X | 0 |   |
+|---+---+---|
+| X |   |   |
++-----------+
+
+Jane won Game #2
++-----------+
+| X |   | 0 |
+|---+---+---|
+| X | 0 |   |
+|---+---+---|
+| 0 |   |   |
++-----------+
+
+Game #3 was a Draw!
++-----------+
+| X | 0 | X |
+|---+---+---|
+| X | 0 | 0 |
+|---+---+---|
+| 0 | X | X |
++-----------+
+
+Total score was:
+Henry: 1 wins
+Jane: 1 wins
+Thanks for playing!
+leaks(29591) MallocStackLogging: could not tag MSL-related memory as no_footprint, so those pages will be included in process footprint - (null)
+leaks(29591) MallocStackLogging: stack logs being written to /private/tmp/stack-logs.29591.104f9c000.leaks.kzhGCd.index
+leaks(29591) MallocStackLogging: recording malloc and VM allocation stacks to disk using standard recorder
+Process 20111 is not debuggable. Due to security restrictions, leaks can only show or save contents of readonly memory of restricted processes.
+
+Process:         tictactoe.out [20111]
+Path:            /Users/USER/*/tictactoe.out
+Load Address:    0x1001a4000
+Identifier:      tictactoe.out
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  leaks [20110]
+
+Date/Time:       2024-03-12 15:31:18.880 -0400
+Launch Time:     2024-03-12 14:56:09.370 -0400
+OS Version:      macOS 14.4 (23E214)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 15.3 (15E204a)
+
+Physical footprint:         3457K
+Physical footprint (peak):  3457K
+Idle exit:                  untracked
+----
+
+leaks Report Version: 4.0, multi-line stacks
+Process 20111: 187 nodes malloced for 18 KB
+Process 20111: 0 leaks for 0 total leaked bytes.
